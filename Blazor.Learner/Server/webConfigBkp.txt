@@ -1,0 +1,30 @@
+<configuration>
+  <location path="." inheritInChildApplications="false">
+    <system.webServer>
+         <modules>
+            <remove name="UmbracoModule" />
+            <remove name="ClientDependencyModule" />
+            <remove name="ImageProcessorModule" />
+         </modules>
+
+      <handlers>
+        <add name="aspNetCore" path="*" verb="*" modules="AspNetCoreModuleV2" resourceType="Unspecified" />
+      </handlers>
+      <aspNetCore processPath="dotnet" arguments=".\Blazor.Learner.Server.dll" stdoutLogEnabled="false" stdoutLogFile="\\?\%home%\LogFiles\stdout" hostingModel="OutOfProcess" />
+    </system.webServer>
+      <system.web>
+	<customErrors mode="Off"/>
+         <compilation debug="true" targetFramework="4.0">
+            <assemblies>
+               <remove assembly="Umbraco.ModelsBuilder" />
+            </assemblies>
+         </compilation>
+         <roleManager enabled="false">
+            <providers>
+               <clear />
+            </providers>
+         </roleManager>
+      </system.web>
+
+  </location>
+</configuration>
